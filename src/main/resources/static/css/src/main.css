@@ -1,0 +1,30 @@
+.custom_tag_input{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.custom_tag_input ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    list-style-type: none;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.custom_tag_input li{
+    background: #d3d3d345;
+}
+.custom_tag_input input{
+    flex: 1 1 auto;
+    align-self: flex-start;
+}
+
+.custom_tag_input input, .custom_tag_input li{
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    margin: 1px;
+    padding: 2px;
+    line-height: 1.5;
+}

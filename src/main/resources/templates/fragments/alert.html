@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+<div class="alert-card alert alert-dismissable" th:classappend="${alertMessage.getType()}" role="alert">
+    <div>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <span th:text="${alertMessage.getMessage()}"></span>
+    </div>
+</div>
+</body>
+</html>

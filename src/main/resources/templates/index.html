@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+
+<!--/*@thymesVar id="web_model_user_cities" type="eu.hulsch.simplespringboottaginputfield.web.model.WebModelUserCities"*/-->
+
+<head lang="en">
+    <title>Simple Spring Boot Tag Inputfield</title>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width"/>
+
+    <meta name="_csrf" th:content="${_csrf?.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf?.headerName}"/>
+
+    <!-- Cascading Stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="/css/src/main.css" th:href="@{/css/src/main.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+
+<div class="main-container" style="margin-top: 50px">
+        <div class="row">
+            <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                <!--/*/ <th:block th:if="${alertMessage != null}" th:include="fragments/alert"></th:block> /*/-->
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+    <form action="#" method="post" class="form-horizontal"
+          th:object="${web_model_user_cities}"
+          th:action="${'/'}">
+
+        <div class="form-group">
+            <label for="usernameInput">Username *</label>
+            <input th:field="*{username}" class="form-control" id="usernameInput" name="username" type="text"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>
+        </div>
+
+        <div class="form-group">
+            <label for="cityNames-select"><span>Citynames</span></label>
+            <div class="custom_tag_input">
+                <ul th:field="*{cityNames}" id="cityNames">
+                    <li th:each="value, stat : ${web_model_user_cities.cityNames}">
+                        <input type="hidden" th:name="|cityNames[${stat.index}]|"
+                               th:value="${value}">
+                        <span th:text="${value}">value</span>
+                    </li>
+                </ul>
+                <input id="cityNames-select" class="custom_tag_input_input" type="text"/>
+            </div>
+            <i style="font-size: 13px">You can input multiple values - confirm each with 'Enter'</i>
+            <span class="text-danger" th:if="${#fields.hasErrors('cityNames')}" th:errors="*{cityNames}">CityNames Error</span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary float-right">Submit
+            </button>
+        </div>
+    </form>
+        </div>
+    </div>
+
+</div>
+
+    <script src="/js/src/tag_input_field.js" th:src="@{/js/src/tag_input_field.js}"></script>
+
+</body>
+</html>
